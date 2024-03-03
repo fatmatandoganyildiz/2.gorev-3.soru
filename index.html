@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+</head>
+<body>
+  <label id="tahminLabel">1. tahmini girin:</label>
+  <input type="number" id="kullaniciTahmini" min="1" max="100">
+  <br/>
+  <button onclick="tahminiKontrolEt()">Tahmin yap</button>
+  <hr>
+  <label id="sonucLabel"></label>
+
+<script>
+  const rastgeleSayi = Math.floor(Math.random() * 100) + 1;
+  let tahminSayisi = 1;
+
+  function tahminiKontrolEt() {
+    const kullaniciTahmini = parseInt(document.getElementById('kullaniciTahmini').value);
+    const sonucLabel = document.getElementById('sonucLabel');
+    const tahminLabel = document.getElementById('tahminLabel');
+    
+    if (kullaniciTahmini === rastgeleSayi) {
+      sonucLabel.textContent = `Sayı ${tahminSayisi} adet denemede bulundu.`;
+    } else if (tahminSayisi === 7) {
+      sonucLabel.textContent = 'Deneme hakkınız kalmadı. Kaybettiniz.';
+    } else {
+      if (kullaniciTahmini < rastgeleSayi) {
+        sonucLabel.textContent = 'Daha büyük bir sayı girin.';
+      } else {
+        sonucLabel.textContent = 'Daha küçük bir sayı girin.';
+      }
+      tahminSayisi++;
+      tahminLabel.textContent = `${tahminSayisi}. tahmini girin:`;
+    }
+  }
+</script>
+</body>
+</html>
